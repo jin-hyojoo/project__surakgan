@@ -1,0 +1,265 @@
+.title{
+	margin-left: 8%;
+}
+.head_image1{
+	margin:50px 0 0 50px;
+}
+ .head_image{
+	margin:50px 0 0 -9px;
+}
+ #container {
+	position: relative;
+/* 	overflow: hidden; */
+	border:1px solid #000;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+#hd_carrier{
+	width:100px;
+	height:80px;;
+}
+
+#cart h2
+
+.content {
+	position: relative;
+	width: 980px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+#cart {
+	overflow: hidden;
+	background: #fff;
+   /*  height: 100%; */
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#cart h2 {
+	margin-bottom: 20px;
+}
+
+.purchase_box {
+	overflow: hidden;
+	margin: 78px 0 80px;
+	position: relative;
+}
+
+.purchase_guide {
+	float: left;
+	width: 48%;
+}
+
+.purchase_guide .box {
+	border-bottom: 1px solid #e1e1e1;
+}
+
+.purchase_price {
+	float: right;
+	width: 48%;
+}
+
+.purchase_price .box {
+	background: #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+	padding: 30px 20px 30px 30px;
+}
+
+/* .purchase_box dl {
+	overflow: hidden;
+	font-size: 14px;
+	color: #000;
+	padding-bottom: 14px;
+} */
+
+.purchase_box dt {
+	float: left;
+	clear: both;
+	margin-bottom: 16px;
+}
+
+.purchase_box dd {
+	position: relative;
+	float: right;
+	text-align: right;
+	margin-bottom: 16px;
+	padding-right: 10px;
+}
+
+.purchase_box dd {
+	position: relative;
+	float: right;
+	text-align: right;
+	margin-bottom: 16px;
+	padding-right: 10px;
+}
+
+.purchase_price .total {
+	border-bottom: none;
+	margin: -3px 10px 6px 0;
+	border-top: 1px solid #777;
+	padding: 20px 0 0;
+}
+
+.purchase_price .total dt {
+    font-size: 18px;
+    color: #333;
+    font-family: NanumEB, sans-serif;
+    margin: 16px 0 0;
+	font-weight: bold;
+}
+
+.purchase_price .total dd {
+	color: #80bfff;
+	padding-right: 0;
+	margin-bottom: 0;
+}
+
+.purchase_price .total dd .number {
+	font-size: 43px;
+	font-weight: bold;
+}
+
+.purchase_price .total dd .won {
+	font-size: 20px;
+	font-family: NanumBold, sans-serif;
+	display: inline-block;
+	position: relative;
+	top: -3px;
+}
+
+.purchase_box dl {
+	overflow: hidden;
+	font-size: 14px;
+	color: #000;
+	padding-bottom: 14px;
+}
+
+.btn-area.cart {
+	margin: 0 0 100px;
+	overflow: hidden;
+	text-align: center;
+}
+
+.btn-area.cart a.btn_white {
+	background: #fff;
+	border: 1px solid #bbb;
+	color: #777;
+}
+
+.btn-area.cart a {
+	display: inline-block;
+	width: 300px;
+	height: 66px;
+	margin: 0 3px;
+	font-size: 20px;
+	font-family: NanumBold, sans-serif;
+	text-align: center;
+	line-height: 66px;
+}
+
+.btn_white {
+	border: 1px solid #e1e1e1;
+	background: #fff;
+	color: #666;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+.btn-area.cart a {
+	display: inline-block;
+	width: 300px;
+	height: 66px;
+	margin: 0 3px;
+	font-size: 20px;
+	font-family: NanumBold, sans-serif;
+	text-align: center;
+	line-height: 66px;
+}
+
+.btn_mint {
+	background: #80bfff;
+	color: #fff;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+.tb_order_style td .prd_account {
+    margin-right: 5px;
+}
+.prd_account {
+    position: relative;
+    width: 67px;
+    height: 31px;
+    border: 1px solid #ccc;
+    background: #fff;
+    overflow: hidden;
+    float: left;
+}
+label {
+    cursor: pointer;
+}
+.tb_order_style tbody td {
+    padding: 18px 0;
+    font-size: 13px;
+    text-align: center !important;
+    line-height: 1.6em;
+    color: #444;
+    vertical-align: middle;
+}
+.prd_account input {
+    display: block;
+    float: left;
+    border: none;
+    width: 47px;
+    height: 31px;
+    padding: 0;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
+}
+.prd_account span {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: block;
+    float: left;
+    width: 19px;
+    height: 31px;
+    border-left: 1px solid #ccc;
+    overflow: hidden;
+}
+.prd_account span a.up {
+	background-image:url(images/prd_account_up.png);
+    background-position: center 2px;
+    border-bottom: 1px solid #ccc; 
+}
+.prd_account span a.down {
+	background-image:url(images/prd_account_down.png);
+    background-position: center 0px;
+    background-position-x: 1px;
+}
+.prd_account span a {
+    display: block;
+    float: left;
+    width: 19px;
+    height: 15px;
+    text-indent: -3000px;
+}
+.tb_order_style td .btn_white {
+    min-width: 50px;
+    height: 33px;
+    padding: 0 10px;
+    background: #fff;
+    border: 1px solid #d4d4d4;
+    font-size: 13px;
+    color: #333;
+    font-family: inherit;
+}

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.1.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+
+	<mvc:annotation-driven></mvc:annotation-driven>
+
+	<!-- [1] DataSource빈 선언 -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin://@127.0.0.1:1521:xe" />
+		<property name="username" value="hr" />
+		<property name="password" value="a1234" />
+	</bean>
+	
+	<!-- [2] SqlSessionFactoryBean 빈 선언 -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:config/adminMapper.xml</value>
+				<value>classpath:config/kingMapper.xml</value>
+				<value>classpath:config/QboardMapper.xml</value>
+				<value>classpath:config/NboardMapper.xml</value>
+				<!-- <value>classpath:config/Back_QboardMapper.xml</value>
+				<value>classpath:config/Back_NboardMapper.xml</value> -->
+			</list>
+		</property>
+	</bean>
+	
+	<!-- [3] SqlSessionTemplate 빈 선언 -->
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>		
+
+	<!-- [4] TransactionManager 빈 선언 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- DAO -->
+	<bean id="info_dao" class="dao.InformationDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>	
+	
+	<bean class="dao.QnaDaoImp" id="qna_dao">	
+		<property name="sqlSession" ref="sqlSession" />	
+	</bean>	
+	
+	<bean class="dao.NoticeDaoImp" id="notice_dao">	
+		<property name="sqlSession" ref="sqlSession" />	
+	</bean>	
+	
+	<bean id="mypage_dao" class="dao.MypageDaoImp">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	
+	<bean class="dao.AdminDaoImp" id="admin_dao">
+		<property name="sqlsession" ref="sqlSession"/>
+	</bean>
+	
+	<!-- Service -->
+	<bean id="info_service" class="service.InformationServiceImp">
+		<property name="dao" ref="info_dao" />
+	</bean>
+
+	<bean class="service.AdminServiceImp" id="admin_service">
+		<property name="dao" ref="admin_dao"/>	
+	</bean>
+	
+	<bean class="java.lang.String" id="path">
+		<constructor-arg value="C:\study\workspace_spring\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\khproject\product"/>
+	</bean>
+		
+	<bean class="service.QnaBoardServiceImp" id="qna_service">
+		<property name="qdao" ref="qna_dao" />
+	</bean>
+	
+	<bean class="service.NoticeBoardServiceImp" id="notice_service">
+		<property name="ndao" ref="notice_dao" />
+	</bean>
+	
+<!-- 	<bean class="service.Back_QnaBoardServiceImp" id="bqna_service">
+		<property name="qdao" ref="qna_dao" />
+	</bean>
+	
+	<bean class="service.Back_NoticeBoardServiceImp" id="bnotice_service">
+		<property name="ndao" ref="notice_dao" />
+	</bean> -->
+	
+	<bean id="mypage_service" class="service.MypageServiceImp">
+		<property name="dao" ref="mypage_dao"></property>
+	</bean>
+
+	<!-- controller -->
+	<bean class="controller.IndexController">
+	   <property name="service" ref="info_service"></property>
+	</bean>
+
+	<bean class="controller.FoodController">
+		<property name="service" ref="info_service" />
+		<property name="path" ref="path" />
+	</bean>
+
+    <bean class="controller.loginController">
+    	<property name="service" ref="info_service" />
+    </bean>
+    
+	<bean class="controller.mypageController">
+		<property name="service" ref="info_service" />
+		<property name="service2" ref="mypage_service" />
+	</bean>
+	
+	<bean class="controller.AdminController">
+		<property name="service" ref="admin_service"/>
+		<property name="service2" ref="mypage_service" />
+		<property name="path" ref="path"/>
+	</bean>
+    
+    <bean class="controller.basketController">
+    	<property name="service" ref="info_service"/>
+    </bean>
+
+	<bean class="controller.QnaBoardController">	
+		<property name="service" ref="qna_service"/>	
+	</bean>
+	
+	<bean class="controller.NoticeBoardController">
+		<property name="service" ref="notice_service"/>	
+	</bean>
+	<!-- <bean class="controller.Back_QnaBoardController">	
+		<property name="service" ref="bqna_service"/>	
+	</bean>
+	
+	<bean class="controller.Back_NoticeBoardController">
+		<property name="service" ref="bnotice_service"/>	
+	</bean> -->
+	
+	<!-- 첨부파일을 임시기억저장소에 저장한다. -->
+	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<property value="1000000000" name="maxUploadSize"/>
+	</bean>
+	
+	<!-- viewResolver -->
+	<bean 
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	
+</beans>

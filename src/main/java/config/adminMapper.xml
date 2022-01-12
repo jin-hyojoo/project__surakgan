@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+	
+	<!-- 전체 게시글 수 -->
+	<select id="totUserList" resultType="int" parameterType="map">
+		select count(*) from Users
+		<where>
+			<if test="searchKey=='u_id'">
+				u_id like '%'||#{searchWord}||'%'
+			</if>
+			<if test="searchKey=='u_name'">
+				u_name like '%'||#{searchWord}||'%'
+			</if>
+			<if test="searchKey=='u_hp'">
+				u_hp like '%'||#{searchWord}||'%'
+			</if>
+		</where>
+	</select>
+	<select id="totProductList" resultType="int" parameterType="map">
+		select count(*) from information i join config c on i.i_gubun=c.c_no
+		<where>
+			<if test="searchKey=='i_menu'">
+				i_menu like '%'||#{searchWord}||'%'
+			</if>
+			<if test="searchKey=='i_gubun'">
+				i_gubun like '%'||#{searchWord}||'%'
+			</if>
+		</where>
+	</select>
+	
+	<select id="totQnaList" resultType="int" parameterType="map">
+		select count(*) from QnA
+		<where>
+			<choose>
+				<when test="head==null"></when>
+				<when test="head=='전체'"></when>
+				<when test="head!=''">
+					q_head like '%' || #{head} || '%'
+				</when>
+			</choose>
+		</where>
+		<where>
+			<if test="searchKey=='b_all'">
+				q_title like '%'||#{searchWord}||'%' OR
+				q_content like '%'||#{searchWord}||'%' OR
+				q_writer like '%'||#{searchWord}||'%'
+			</if>
+			<if test="searchKey=='b_title'">
+				q_title like '%'||#{searchWord}||'%'
+			</if>
+			<if test="searchKey=='b_content'">
+				q_content like '%'||#{searchWord}||'%'
+			</if>
+			<if test="searchKey=='b_writer'">
+				<!-- DB에 작성자 내용에 관한 컬럼 없음. USER테이블의 u_name내용 들어가게.. 그럴려면 공통된 u_no컬럼으로 조인을 하고 u_name컬럼을 사용?? -->
+				q_writer like '%'||#{searchWord}||'%'
+			</if>
+		</where>
+	</select>
+	<select id="totNoticeList" resultType="int" parameterType="map">
+		select count(*) from News
+		<where>
+			<choose>
+				<when test="head==null"></when>
+				<when test="head=='전체'"></when>
+				<when test="head!=''">
+					n_head like '%' || #{head} || '%'
+				</when>
+			</choose>
+		</where>
+		<where>
+			<if test="searchKey=='b_all'">
+				n_title like '%'||#{searchWord}||'%' OR
+				n_content like '%'||#{searchWord}||'%' OR
+				n_writer like '%'||#{searchWord}||'%'
+			</if>
+			<if test="searchKey=='b_title'">
+				n_title like '%'||#{searchWord}||'%'
+			</if>
+			<if test="searchKey=='b_content'">
+				n_content like '%'||#{searchWord}||'%'
+			</if>
+			<if test="searchKey=='b_writer'">
+			<!-- QNA와 동일하게 DB에 작성자 내용에 관한 컬럼 없음. USER테이블의 u_name내용 들어가게.. 그럴려면 공통된 u_no컬럼으로 조인을 하고 u_name컬럼을 사용?? -->
+				n_writer like '%'||#{searchWord}||'%'
+			</if> 
+		</where>
+	</select>
+	 
+	<!-- 회원리스트 -->
+	<select id="userList" resultType="dto.UsersDTO" parameterType="dto.PageDTO">
+		select b.* from (
+			select rownum as rn, a.* from (
+				select * from Users
+				<where>
+					<if test="searchKey=='u_id'">
+						u_id like '%'||#{searchWord}||'%'
+					</if>
+					<if test="searchKey=='u_name'">
+						u_name like '%'||#{searchWord}||'%'
+					</if>
+					<if test="searchKey=='u_hp'">
+						u_hp like '%'||#{searchWord}||'%'
+					</if>
+				</where>
+			 	order by u_grade desc, u_no)a)b 
+			<![CDATA[where b.rn>=#{startRow} and b.rn <=#{endRow}]]> 
+	</select>
+	
+	<!-- 상품리스트 -->
+	<select id="productList" resultType="dto.InformationDTO" parameterType="dto.PageDTO">
+		select b.* from (
+			select rownum as rn, a.* from (
+				select * from information i join config c on i.i_gubun=c.c_no
+				<where>
+					<if test="searchKey=='i_menu'">
+						i_menu like '%'||#{searchWord}||'%'
+					</if>
+					<if test="searchKey=='i_gubun'">
+						i_gubun like '%'||#{searchWord}||'%'
+					</if>
+				</where>
+			 	order by i_state, i_regdate desc, i_no)a)b 
+			<![CDATA[where b.rn>=#{startRow} and b.rn <=#{endRow}]]> 
+	</select>
+	
+	<!-- 게시판리스트 -->
+	<!-- Qna게시판리스트 -->
+	<select id="qnaList" resultType="dto.QnaDTO" parameterType="dto.PageDTO">
+		select b.* from (
+			select rownum as rn, a.* from (
+				select * from QnA
+					<where>
+						<choose>
+							<when test="head==null"></when>
+							<when test="head=='전체'"></when>
+							<when test="head!=''">
+								q_head like '%' || #{head} || '%'
+							</when>
+						</choose>
+					</where>
+					<where>
+						<if test="searchKey=='b_all'">
+							q_title like '%'||#{searchWord}||'%' OR
+							q_content like '%'||#{searchWord}||'%' OR
+							q_writer like '%'||#{searchWord}||'%'
+						</if>
+						<if test="searchKey=='b_title'">
+							q_title like '%'||#{searchWord}||'%'
+						</if>
+						<if test="searchKey=='b_content'">
+							q_content like '%'||#{searchWord}||'%'
+						</if>
+						<if test="searchKey=='b_writer'">
+							<!-- DB에 작성자 내용에 관한 컬럼 없음. USER테이블의 u_name내용 들어가게.. -->
+							q_writer like '%'||#{searchWord}||'%'
+						</if>
+					</where> 
+			 	order by q_regdate desc, q_no)a)b 
+			<![CDATA[where b.rn>=#{startRow} and b.rn <=#{endRow}]]> 
+	</select>
+	
+	<!-- Notice게시판리스트 -->
+		<select id="noticeList" resultType="dto.NoticeDTO" parameterType="dto.PageDTO">
+		select b.* from (
+			select rownum as rn, a.* from (
+				select u_name n_writer, n.* from News n join users u on n.u_no=u.u_no
+					<where>
+						<choose>
+							<when test="head==null"></when>
+							<when test="head=='전체'"></when>
+							<when test="head!=''">
+								n_head like '%' || #{head} || '%'
+							</when>
+						</choose>
+					</where>
+					<where>
+						<if test="searchKey=='b_all'">
+							n_title like '%'||#{searchWord}||'%' OR
+							n_content like '%'||#{searchWord}||'%' OR
+							n_writer like '%'||#{searchWord}||'%'
+						</if>
+						<if test="searchKey=='b_title'">
+							n_title like '%'||#{searchWord}||'%'
+						</if>
+						<if test="searchKey=='b_content'">
+							n_content like '%'||#{searchWord}||'%'
+						</if>
+						<if test="searchKey=='b_writer'">
+							n_writer like '%'||#{searchWord}||'%'
+						</if>
+					</where>
+			 	order by n_regdate desc, n_no)a)b 
+			<![CDATA[where b.rn>=#{startRow} and b.rn <=#{endRow}]]> 
+	</select>
+	
+	<!-- 유저등급수정 -->
+	<update id="uptGrade" parameterType="map">
+		update users set u_grade = #{grade} where u_no = #{no}
+	</update>
+	
+	<!-- 상품등록 -->
+	<insert id="insertInfo" parameterType="dto.InformationDTO">
+		insert into information(i_no, i_gubun, i_menu, i_price, i_kcal, i_img, i_hit, i_regdate, i_state)
+		values (information_seq.nextval, #{i_gubun}, #{i_menu}, #{i_price}, #{i_kcal}, #{i_img}, 0, sysdate, 0)
+	</insert>
+	<select id="maxI_no" resultType="int">
+		select max(i_no) from information
+	</select>
+	<insert id="insertInfoImg" parameterType="java.util.List">
+		insert into information_image
+		select information_image_seq.nextval, a.*
+		from(
+			<foreach collection="list" item="dto" separator="union all">
+			select
+				#{dto.i_no}, #{dto.ii_image}, #{dto.ii_state}	
+			from dual
+			</foreach>
+		) a
+	</insert>
+	
+	<update id="uptInfoState" parameterType="map">
+		update information set i_state=#{i_state} where i_no=#{i_no}
+	</update>
+	
+	<!-- 주문관리 -->
+	<select id="lunchboxOrderList" resultType="String" parameterType="int">
+		select i_menu from lunchbox l join information i on l.i_no=i.i_no where on_no=#{on_no}
+	</select>
+	<!-- 수령확인 -->
+	<update id="lunchboxStateUpt" parameterType="int">
+		update oder_menu set on_state=1 where on_no=#{on_no}
+	</update>
+	<!-- 입금확인 -->
+	<update id="depositChk" parameterType="int">
+		update oder set o_state=1 where o_no=#{o_no}
+	</update>
+	<select id="depositVal" resultType="dto.OderDTO" parameterType="int">
+		select o.o_no, on_no, u_name, i_no, i_name, on_cnt, on_getdate, on_time, o_state, on_state 
+		from (oder o join oder_menu om on o.o_no=om.o_no)join users u on o.u_no=u.u_no
+		where o.o_no=#{o_no}
+	</select>
+</mapper>   
+
+
+
+
+
+
+
+
+
+
+

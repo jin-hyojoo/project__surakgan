@@ -1,0 +1,85 @@
+.state_a{
+	width: 150px;
+	height: 30px;
+	margin-left: 220px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 24px;
+	color: white;
+    text-align: center;
+	background-color: #DD3522;
+	float: left;
+
+}
+
+.state_b{
+	width: 150px;
+	height: 30px;
+	margin-top: 20px;
+	margin-left: 10px;
+	font-size: 24px;
+	color:#fff;
+	text-align: center;
+	background-color: #DD3522;
+	float: left;
+	
+}
+.state_c{
+	width: 150px;
+	height: 30px;
+	margin-top: 20px;
+	margin-left: 10px;
+	font-size: 24px;
+	color:#fff;
+	text-align: center;
+	background-color: #DD3522;
+ 	float: left; 
+ 	
+}
+
+div.myinfo {
+	width:1100px;
+	margin:auto;
+}
+
+.join_info{
+	width:70%;
+	margin-left: 15%;
+	margin-top: 5%;
+}
+
+.intro_pic1{
+	margin-left: 15%;
+	width:70%;
+	
+}
+
+.join_info span{
+	text-align: center;
+	margin-left: 32%;
+	width:70%;
+	font-size: 24px;
+}
+
+.intro_pic2{
+	margin-left: 15%;
+	padding-top: 30px;
+	width:70%;
+}
+
+.login_btn{
+    display: block;
+    margin-left: 10%;
+    margin-top: 30px;
+    padding: 17px 0 15px;
+    width: 80%;
+    text-align: center;
+    font-size: 16px;
+    color: #444;
+    border: 1px solid #d7d7d7;
+    background-color: #FFEFEF;
+}
+
+.login_btn2{
+	margin-left: -50px;
+}

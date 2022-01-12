@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+/*댓글 신규 입력창*/
+.cmt_write_wrap { position:relative; z-index:2;}
+.cmt_write { height:130px; margin:0 0 28px 0; padding:0 19px; background:#f9f9f9; border:1px solid #dedede; }
+.cmt_write legend { position:absolute; left:-99999px; font-size:0; width:0; height:0; line-height:0; border-bottom:1px solid #dedede;}
+.cmt_write label { font:12px 굴림,Gulim,Helvetica, sans-serif;color:#666; }
+.cmt_write dl dt { width:0; height:0; overflow:hidden; font:0/0 Arial; text-indent:-1000em; } /*overflow:hidden;*/
+
+.cmt_write dl.writing { margin-bottom:0; }
+.cmt_write dl.writing textarea { width:90%; height:52px; margin-top:-1px; .margin-top:-3px; margin-right:1px; 
+padding:4px 5px; font:11px/15px 돋움,Dotum,Helvetica, sans-serif; color:#666; letter-spacing:-1px; 
+word-spacing:2px; border:1px solid #d6d4d5;  overflow:auto; overflow-x:hidden; resize:none; }
+.cmt_write dl.writing input { margin-top:-1px; .margin:-2px 0 0 0; vertical-align:top; }
+.cmt_write div.cmt_title {padding:10px 0;font-weight:bold;}
+
+.writing img {cursor:pointer;}
+
+/*댓글 리스트*/
+
+#cmt_list .cmt_item {width:95%; padding:18px 20px 13px 20px; border-top:1px solid #dedede; .z-index:50;}
+#cmt_list .cmt_item:last-child{width:95%; padding:18px 20px 13px 20px; border-bottom:1px solid #dedede; .z-index:51;}
+#cmt_list .cmt_item .user { float:left; color:#666; line-height:1.5; }
+#cmt_list .cmt_item .user img{float:left; margin-right:5px; vertical-align:middle; .vertical-align:top;}
+#cmt_list .cmt_item .nameui { float:left; color:#48688f !important; .position:relative; display:block; .display:inline-block; line-height:1.2; }
+#cmt_list .cmt_item span.date{float:left; display:inline-block; font:normal 9px Verdana; color:#999; letter-spacing:-1px; line-height:1.2; padding-right:7px; }
+#cmt_list .cmt_item span.date em{font-style:normal; color:#ccc; padding:0 5px; }
+#cmt_list .cmt_item .usertxt {padding:10px 0 7px 0; color:#434343;word-break:break-all;word-wrap:break-word; } 
+#cmt_list .cmt_item .usertxt img{vertical-align:middle;} 
+#cmt_list .cmt_item .usertxt .new { margin:-2px 0 0 0; }
+span.cmtxtarea {width:100%;padding:5px;position:relative;}
+.cmtxtarea textarea{float:left; width:90%; height:56px; margin-top:-1px; .margin-top:-3px; margin-right:1px; 
+padding-top:4px; font:11px/15px 돋움,Dotum,Helvetica, sans-serif; color:#666; letter-spacing:-1px; 
+word-spacing:2px; border:1px solid #d6d4d5;  overflow:auto; overflow-x:hidden; resize:none; }
+.cmtxtarea img {float:left; margin-left:5px; vertical-align:middle; .vertical-align:top;}
+	 

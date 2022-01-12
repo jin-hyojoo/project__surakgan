@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="Nboard">
+	<!-- 게시글 리스트 카운트 -->
+	<select id="count" parameterType="dto.SearchDTO" resultType="java.lang.Integer">
+		select count(*) from News
+		<where>
+			<choose>
+				<when test="head==null"></when>
+				<when test="head=='전체'"></when>
+				<when test="head!=''">
+					n_head like '%' || #{head} || '%'
+				</when>
+			</choose>
+		</where>
+		
+		<where>	
+			<choose>
+				<when test="keyword == null"></when>
+				<when test="keyword !=''">
+					<choose>
+						<!-- 전체검색이면  -->
+						<when test="option == 'all'">
+							n_writer like '%'||#{keyword}||'%'
+							OR n_content like '%'||#{keyword}||'%'
+							OR n_title like '%'||#{keyword}||'%'
+						</when>
+						<otherwise>
+							${option} like '%'||#{keyword}||'%'
+						</otherwise>
+					</choose>
+				</when>
+			</choose>
+		</where>
+	</select>
+	
+	<!--리스트 셀렉트  -->
+	<select id="list" resultType="dto.NoticeDTO" parameterType="java.util.Map">
+		select b.* 
+		from (select rownum as rm, a.*
+			  from (select *
+			  		from (select u_name n_writer, n.* 
+			  				from News n join users u on n.u_no=u.u_no
+				 	      <where>
+				 	      		<choose>
+				 	      			<when test="sdto.head==null"></when>
+				 	      			<when test="sdto.head=='전체'"></when>
+				 	      			<when test="sdto.head !=''">
+					 	    		  n_head = #{sdto.head}
+				 	      			</when>
+				 	      		</choose>
+				 	      </where>
+			              order by n_ref desc, n_step asc)
+		            <where>
+		            	<choose>
+		            		<when test="sdto.keyword == null">
+		            		</when>
+		            		<when test="sdto.keyword !=''">
+		            			<choose>
+							        <!-- 검색옵션이 전체 검색일 경우 -->
+							        <when test="sdto.option == 'all'">
+							            n_writer like '%'||#{sdto.keyword}||'%'
+							            OR n_content like '%'||#{sdto.keyword}||'%'
+							            OR n_title like '%'||#{sdto.keyword}||'%'
+							        </when>
+							        <!-- 전체 검색이 아닐 경우 -->
+							        <otherwise>
+							            ${sdto.option} like '%'||#{sdto.keyword}||'%'
+							        </otherwise>
+							    </choose>
+		            		</when>
+		            	</choose>
+		            </where>) a)b
+		<![CDATA[where b.rm>=#{pdto.startRow} and b.rm<=#{pdto.endRow}]]>           
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="readCount" parameterType="int">
+		update News
+		set
+		n_readcount=n_readcount+1
+		where n_no=#{n_no} 
+	</update>
+	
+	<select id="content" parameterType="int" resultType="dto.NoticeDTO">
+		select n_no, u_name n_writer, n_regdate, n_readcount, n_title, n_content from News n join users u on n.u_no=u.u_no where n_no=#{n_no}
+	</select>
+	
+	<update id="reStepCount" parameterType="dto.NoticeDTO">
+	 <![CDATA[
+	    update News set n_step=n_step+1
+	    where n_ref=#{n_ref} and n_step>#{n_step}
+	 ]]>
+	</update>
+	
+	<insert id="save" parameterType="dto.NoticeDTO">
+		insert into News
+		values(News_seq.nextval,#{u_no},#{n_head},#{n_title},#{n_content}, sysdate,0,
+		<choose>
+			<when test="n_ref==0">
+				News_seq.nextval
+			</when>
+			<otherwise>
+				#{n_ref}
+			</otherwise>
+		</choose>
+		,#{n_step},#{n_level},0)
+	</insert>
+	
+	<update id="update" parameterType="dto.NoticeDTO">
+		 update News set n_head=#{n_head}, n_title=#{n_title}, n_content=#{n_content} 
+		 where n_no=#{n_no}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from News
+		where n_no=#{n_no}
+	</delete>
+</mapper>    
+
+
+
+
+
+
+
+
+
+
+
+

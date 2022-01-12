@@ -1,0 +1,42 @@
+.pwcheck_wrap{
+	width: 90%;
+}
+
+.check_wrap{
+	width: 45%;
+    margin-top: 9%;
+    margin-bottom: 12%;
+    margin-left: 33%;
+}
+
+h2 {
+  color: #512800;
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.warn{
+	text-align: center;
+	color: #636363;
+	margin-bottom: 20px;
+}
+
+.checkpw{
+	width: 40%;
+	height: 40px;
+	margin-left: 140px;
+	border:1px solid #512800;
+	margin-right: 10px;
+	margin-bottom: 20px;
+}
+
+.check_btn{
+	width: 70px;
+	height: 40px;
+	background: #DD3522;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}

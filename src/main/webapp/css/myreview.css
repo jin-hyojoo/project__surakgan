@@ -1,0 +1,113 @@
+#content{
+	width: 775px;
+	margin: auto;
+	position: relative;
+	background: #fff;
+}
+#content hr{
+	border: 1.3px solid black;
+}
+#content a{
+	text-decoration: none;
+    color: #333;
+}
+
+/* comment */
+.starscore_bg{
+	position: relative;
+    display: inline-block;
+    width: 118px;
+    height: 21px;
+    margin-bottom: 2px;
+    background: url(../images/review_star.png) no-repeat left top;
+    background-size: auto 42px;
+}
+.starscore_bg#event_star{
+	border: 1px solid #BDBDBD;
+}
+.starscore{
+	position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: url(../images/review_star.png) no-repeat left bottom;
+    background-size: auto 42px;
+}
+
+#comment{
+	width: 100%;
+}
+#comment p{
+	font-family: "Noto Sans KR Bold", "Nanum Gothic", sans-serif;
+	font-size: 24px;
+	font-weight:bold;
+	margin-bottom: 10px;
+}
+#comment_box li{
+	position: relative;
+	list-style: none;
+	margin-top: 10px;
+    padding: 0 0 40px;
+    border-bottom: 1px solid #e6e6e6;
+    font-size: 14px;
+    color: #333;
+}
+#comment_box .left_comment {
+	float: left;
+    width: 146px;
+    padding-right: 20px;
+    font-size: 20px;
+}
+
+#comment_box .left_comment .i_menu{
+	padding: 2px 4px 0 4px;
+}
+#comment_box .right_comment .c_content{
+	position: relative;
+	display: inline;
+	text-overflow: ellipsis;
+    line-height: 1.5em;
+    margin-bottom: 15px;
+}
+#comment_box .right_comment .etc{
+	float: right;
+	display: inline;
+}
+#comment_box .right_comment .etc p{
+	font-size: 13px;
+    color: #999;
+}
+#comment_box .right_comment .etc span{
+	text-align: right;
+	color: #DD3522;
+}
+#comment_box .right_comment .etc span a{
+	font-size: 10px;
+    color: #DD3522;
+}
+#comment_box .hide{
+	display: none;
+}
+#comment_write{
+    margin-top: 5px;
+}
+#comment_write #left_write	{
+	float: left;
+    width: 146px;
+    padding-right: 20px;
+    font-size: 13px;
+}
+#ic_write{
+	width: 95px;
+	height: 63px;
+	background: #DD3522;
+    color: #fff;
+	font-family: "Noto Sans KR Bold", "Nanum Gothic", sans-serif;
+	font-size: 24px;
+	font-weight:bold;
+	text-align: center;
+	border: none;
+	position: relative;
+	top: -20px;
+}
+/* end comment */

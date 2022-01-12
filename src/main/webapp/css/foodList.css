@@ -1,0 +1,360 @@
+@charset "UTF-8";
+
+/* 기본 레이아웃 */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, menu, nav, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    font-weight: normal;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+body {
+    font-family: "Nanum","Apple Gothic","Malgun Gothic","Nanum Gothic","Dotum",Arial,sans-serif;
+    font-size: 13px;
+    background: #fff;
+    color: #333;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+.wrap {
+    position: relative;
+}
+
+.content {
+    position: relative;
+    width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* 메뉴목록 영역 */
+ul.food_menu{
+    overflow: hidden;
+    border: 1px solid #d6d6d6;
+    margin: 40px 0 0;
+    padding: 15px 30px 6px;
+    width: 915px
+
+}
+	
+ul.food_menu li{
+    font-family: "Noto Sans KR",sans-serif;
+    float: left;
+    line-height: 18px;
+    height: 35px;
+    margin: 5px 30px 0 0;
+}
+
+ul.food_menu li a:hover span, ul.food_menu li a:focus span{
+    border-bottom: 3px solid #333;
+    color: #333;
+    padding-bottom: 3px;
+}
+
+ul.food_menu li a:active span {
+	
+}
+
+/* 메뉴제목 영역 */
+h2.food_title {
+    font-family: "Noto Sans KR Bold",sans-serif;
+    font-size: 26px;
+    color: #333;
+    text-align: center;
+    margin: 40px 0 30px;
+}
+
+
+/* 음식목록 영역 */
+ul.foods_list {
+    font-family: "Noto Sans KR",sans-serif;
+    letter-spacing: -0.03em;
+    position: relative;
+    margin: 0 2px;
+    overflow: hidden;
+    clear: both;
+}
+
+ul.foods_list li {
+    position: relative;
+    display: inline-block;
+    zoom: 1;
+    float: left;
+    width: 235px;
+    margin: 0 12px 40px 0;
+    background: #fff;
+    border-bottom: 1px solid #c9c9c9;
+}
+/* 음식이미지 영역 */
+ul.foods_list li .food_img {
+    position: relative;
+    background: #e1e1e1;
+    overflow: hidden;
+    width: 235px;
+    height: 235px;
+}
+
+ul.foods_list li .food_img img{
+    max-width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.food_img img{
+	width: 100%;
+	display: inline-block;
+}
+
+ul.foods_list li .food_img a {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(0,0,0,0.07);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+/* 음식이미지 할인 영역 */
+ul.foods_list li .food_img .img_discount {
+    top: 10px;
+    right: 10px;
+}
+
+.img_discount {
+    font-family: "Noto Sans KR Bold",sans-serif;
+    letter-spacing: -0.03em;
+    position: absolute;
+    width: 68px;
+    height: 48px;
+    padding-top: 24px;
+    color: #fff;
+    text-align: center;
+    background: url(../../web/common/thumb_badge.png) no-repeat center center;
+}
+
+.img_discount span.num {
+    font-size: 20px;
+}
+
+.img_discount span.unit {
+    font-size: 15px;
+}
+
+/* 음식정보 영역 */
+ul.foods_list li .foods_list_info {
+    overflow: hidden;
+    position: relative;
+    background: #fff;
+    width: 235px;
+    padding: 16px 16px 12px;
+    border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+ul.foods_list li .foods_list_info  .food_title a {
+    display: block;
+    font-family: "Noto Sans KR Bold",sans-serif;
+    font-size: 14px;
+    margin-bottom: 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+ul.foods_list li .foods_list_info .star-rating-box {
+    overflow: hidden;
+    margin-bottom: 1px;
+}
+
+ul.foods_list li .foods_list_info .star-rating-box .review-count {
+    display: inline-block;
+    font-size: 14px;
+    color: #999;
+}
+
+/* 음식정보 가격 영역 */
+ul.foods_list li .foods_list_info .food_price {
+    position: relative;
+    color: #333;
+}
+
+ul.foods_list li .foods_list_info .food_price p.selling-price {
+    font-size: 16px;
+    letter-spacing: -0.05em;
+    margin-right: 5px;
+}
+
+ul.foods_list li .foods_list_info .food_price p {
+    position: relative;
+    display: inline-block;
+    font-family: "Noto Sans KR Bold",sans-serif;
+}
+
+ul.foods_list li .foods_list_info .food_price p.origin-price {
+    font-family: "Noto Sans KR",sans-serif;
+    font-size: 12px;
+    color: #999;
+}
+
+ul.foods_list li .foods_list_info .food_price p {
+    position: relative;
+    display: inline-block;
+    font-family: "Noto Sans KR Bold",sans-serif;
+}
+
+/* 음식정보 장바구니 영역 */
+ul.foods_list li .foods_list_info .food_basket {
+    overflow: hidden;
+    position: relative;
+    margin: 12px 0 4px;
+}
+
+.food_account {
+    position: relative;
+    width: 67px;
+    height: 31px;
+    border: 1px solid #ccc;
+    background: #fff;
+    overflow: hidden;
+    float: left;
+}
+
+label {
+    cursor: pointer;
+}
+
+.food_account input {
+    display: block;
+    float: left;
+    border: none;
+    width: 47px;
+    height: 31px;
+    padding: 0;
+    font-family: "Noto Sans KR",sans-serif;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+
+
+.food_account span {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    display: block;
+    float: left;
+    width: 19px;
+    height: 31px;
+    border-left: 1px solid #ccc;
+    overflow: hidden;
+}
+
+.food_account span a.up {
+    background-position: center 4px;
+    border-bottom: 1px solid #ccc;
+}
+
+.food_account span a.down {
+    background-position: center -7px;
+}
+
+.food_account span a {
+    display: block;
+    float: left;
+    width: 19px;
+    height: 15px;
+    text-indent: -3000px;
+    background: url(../../myfinal/images/ic_acc_up_down.png) no-repeat #fff;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+/*음식정보 장바구니 버튼 영역*/
+button.food_btn {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 124px;
+    height: 33px;
+    font-size: 14px;
+    padding-top: 3px;
+}
+
+ .food_btn {
+    background: #9e9992;
+    color: #fff;
+}
+
+/*  button, .food_btn {
+    display: inline-block;
+    zoom: 1;
+    font-family: "Noto Sans KR Bold","Nanum Gothic",sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    overflow: visible;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}  */
+
+/* 더보기 버튼 영역 */
+.morebtn {
+    bottom: 0px;
+}
+
+.morebtn {
+    position: absolute;
+    width: 100%;
+    max-width: 150px;
+    margin-bottom: -10px;
+    text-align: center;
+    background: #DD3522;
+    color: #fff;
+    padding: 10px 0;
+    font-size: 13px;
+    left: 0px;
+    right: 0px;
+    cursor: pointer;
+}
+#moreImg{
+	position: relative;
+	width: 20px;
+	height: 10px;
+} 

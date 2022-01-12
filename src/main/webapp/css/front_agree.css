@@ -1,0 +1,160 @@
+.state_a{
+	width: 150px;
+	height: 30px;
+	margin-left: 220px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 24px;
+	color: white;
+    text-align: center;
+	background-color: #DD3522;
+	float: left;
+
+}
+
+.state_b{
+	width: 150px;
+	height: 30px;
+	margin-top: 20px;
+	margin-left: 10px;
+	font-size: 24px;
+	color:#fff;
+	text-align: center;
+	background-color: #DD3522;
+	float: left;
+	
+}
+.state_c{
+	width: 150px;
+	height: 30px;
+	margin-top: 20px;
+	margin-left: 10px;
+	font-size: 24px;
+	color:#fff;
+	text-align: center;
+	background-color: #F9A406;
+ 	float: left; 
+ 	
+}
+
+div.myinfo {
+	width:1100px;
+	margin:auto;
+}
+
+.myinfo{
+	border-bottom:1px solid #F9A406; 
+}
+.member_tbl1 table {
+	table-layout:fixed; 
+	width:100%; 
+	border-top:1px solid #F9A406; 
+	margin-top: -10px;
+}
+
+.member_tbl1 table tr.last th, .member_tbl1 table tr.last td {
+	border:none;
+}
+
+.member_tbl1 table tr th { 
+	width:181px; 
+	border-bottom:1px solid #e8e9e9; 
+	color:#272727; 
+	text-align:left; 
+	font-weight:normal; 
+	
+}
+
+.member_tbl1 table tr td { 
+	height:51px; /*padding:16px 0;*/ 
+	border-bottom:1px solid #e8e9e9; 
+	line-height:16px; 
+}
+
+
+.member_tbl1 table tr td strong { 
+	color:#272727; 
+}
+
+.member_tbl1 table tr td span.title {
+	margin-left:20px; 
+	color:#929292; 
+	font-size:12px; 
+	letter-spacing:-1px; 
+}
+
+.member_tbl1 table tr td .txt { 
+	height:20px; 
+	padding:3px; 
+	border-top:1px solid #919191; 
+	border-left:1px solid #919191; 
+	border-bottom:1px solid #d0d0d0; 
+	border-right:1px solid #d0d0d0; 
+}
+
+.member_tbl1 table tr td label { 
+	margin-left:3px; 
+	vertical-align:middle; 
+}
+
+.member_tbl1 table tr td .name {
+	width:207px;
+}
+
+#sample4_postcode{
+	margin-top: 10px;
+	width: 165px;
+	height: 20px;
+}
+
+#sample4_roadAddress{
+	margin-top: 10px;
+	width: 400px;
+}
+
+#sample4_jibunAddress{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 400px;
+}
+
+#Check_id{
+	background-color:#F9A406; 
+	border: 0;
+	width: 100px;
+	height: 30px;
+}
+
+#Check_phone{
+	background-color:#F9A406; 
+	border: 0;
+	width: 100px;
+	height: 30px;
+}
+
+#btn_address{
+	background-color:#F9A406; 
+	border: 0;
+	width: 100px;
+	height: 30px;
+}
+
+#join_btn{
+	margin-left: 30%;
+	width: 200px;
+	height: 70px;
+	background-color:#DD3522;
+	color:#fff;
+	border: 0;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#join_not_btn{
+	background-color:#DD3522;
+	color:#fff;
+	border: 0;
+	font-weight: bold;
+	font-size: 20px;
+}
+

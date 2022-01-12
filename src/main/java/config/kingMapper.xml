@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="king">
+    
+	<!-- 인덱스창 공지사항 제목리스트 -->
+	<select resultType="dto.NoticeDTO" id="noticelist">
+	select n_no, n_title, n_regdate 
+	from news 
+	</select>
+
+	<!-- 인덱스창 공지사항 뷰창으로 넘어가기 -->
+	<select resultType="dto.NoticeDTO" id="indexnoticeview"
+		parameterType="Integer">
+		select *from News where n_no=#{n_no} 
+	</select>
+	
+	<!-- 마이페이지 나의질문 뷰창으로 넘어가기 -->
+	<select resultType="dto.QnaDTO" id="myqnaview"
+		parameterType="Integer">select a.*, u.u_name 
+		from QnA a, Users u where
+		a.u_no=u.u_no and q_no=#{q_no} </select>
+
+	<!-- 마이페이지 나의 질문 -->
+	<select resultType="dto.QnaDTO" id="qnainfo"
+		parameterType="Integer">select * from QnA where u_no=#{u_no} order by q_no desc
+	</select>
+	
+	<!-- 후기 -->
+	<select id="myreview_list" resultType="dto.Information_CommentDTO" parameterType="int">
+		select ic_no, i_menu, ic_star, ic_content, ic_regdate from information_comment ic join information i on ic.i_no=i.i_no
+		where u_no=#{u_no} and ic_state=0 order by ic_regdate desc
+	</select>
+	<delete id="reviewDel" parameterType="int">
+		delete from information_comment where ic_no=#{ic_no}
+	</delete>
+	<update id="reviewUpt" parameterType="dto.Information_CommentDTO">
+		update information_comment 
+		set ic_star=#{ic_star}, ic_content=#{ic_content}, ic_regdate=sysdate
+		where ic_no=#{ic_no}
+	</update>
+	
+	<!-- 주문내역 -->
+	<select id="selectU_grade" resultType="int" parameterType="int">
+      select u_grade from users where u_no=#{u_no}
+   </select>
+   <select id="myorder_list" resultType="dto.OderDTO" parameterType="map">
+      select i_name, on_cnt, on_getdate 
+      from oder o join oder_menu om on o.o_no=om.o_no
+      where 
+         <if test="u_grade==0">
+            u_no=#{u_no} and
+         </if> 
+         to_number(to_char(on_getdate, 'mm'))=#{month} order by on_getdate, o.o_no
+   </select>
+	<select id="detailOrder" resultType="dto.OderDTO" parameterType="map">
+		select o.o_no, on_no, u_name, i_no, i_name, on_cnt, on_getdate, on_time, o_state, on_state 
+		from (oder o join oder_menu om on o.o_no=om.o_no)join users u on o.u_no=u.u_no
+		where u_no=#{u_no} and to_char(on_getdate,'yyyy-mm-dd')=#{date}
+		order by o.o_no
+	</select>
+
+	<!-- 회원탈퇴 -->
+	<update id="infodel" parameterType="Integer">
+		update Users set u_state=1
+		where u_no=#{u_no}
+	</update>
+
+	<!-- 회원 정보수정 -->
+	<update id="infoupdate" parameterType="dto.UsersDTO">
+		update Users set u_pw=#{u_pw}, u_hp=#{u_hp}, u_mail=#{u_mail},
+		u_address=#{u_address}, u_update=sysdate
+		where u_id=#{u_id}
+	</update>
+
+	<!-- 회원정보 불러오기 -->
+	<select id="usersinfo" parameterType="String"
+		resultType="dto.UsersDTO">
+		select * from users
+		where u_id=#{u_id}
+	</select>
+
+	<!-- 마이페이지 비밀번호체크 -->
+	<select id="checkpw" parameterType="String" resultType="String">
+		select u_pw from users
+		where u_id=#{u_id}
+	</select>
+
+	<!-- 최고의 수락간 목록 -->
+	<select id="bestlist" resultType="dto.InformationDTO">
+		select rownum, b.*
+		from(select rownum as rm, a.*
+		from(
+		select * from information
+		order by i_hit desc
+		)a)b
+      <![CDATA[where b.rm>=1 and b.rm <=12]]>
+	</select>
+
+	<!-- 새로운 도시락 목록 -->
+	<select resultType="dto.InformationDTO" id="newboxlist">
+		select rownum, b.*
+		from(select rownum as rm, a.*
+		from(select * from information
+		where i_gubun='1' or i_gubun='2' or i_gubun='3'
+		order by i_regdate desc)a)b 
+	<![CDATA[where b.rm>=1 and b.rm <=12]]>
+	</select>
+
+	<!-- 새로운 도시락 목록 -->
+	<select resultType="dto.InformationDTO" id="newsidelist">
+		select rownum, b.*from(select rownum as rm, a.*
+		from(select * from information 
+		where i_gubun='4' or i_gubun='5' or i_gubun='6'
+		order by i_regdate desc)a)b 
+	<![CDATA[where b.rm>=1 and b.rm <=12]]>
+	</select>
+
+	<!-- 아이디 찾기 -->
+	<select id="find_id" parameterType="dto.UsersDTO"
+		resultType="String">
+		select u_id from users
+		where u_name=#{u_name} and u_hp=#{u_hp}
+	</select>
+
+	<!-- 비밀 번호 찾기 -->
+	<select id="find_pw" parameterType="dto.UsersDTO"
+		resultType="String">
+		select u_pw from users
+		where u_id=#{u_id} and u_name=#{u_name} and u_hp=#{u_hp}
+	</select>
+
+	<!-- 로그인 -->
+	<select id="logincheck" parameterType="dto.UsersDTO"
+		resultType="String">
+		select * from users
+		where u_id=#{u_id} and u_pw=#{u_pw} and u_state = #{u_state}
+	</select>
+
+	<!-- 로그인 정보 -->
+	<select id="logininfo" parameterType="dto.UsersDTO"
+		resultType="dto.UsersDTO">
+		select * from users
+		where u_id=#{u_id} and u_pw=#{u_pw}
+	</select>
+
+	<!-- 회원가입 -->
+	<insert id="usersinsert" parameterType="dto.UsersDTO">
+		insert into users(u_no, u_id, u_pw, u_name, u_mail, u_hp, u_address,
+		u_regdate, u_grade, u_state)
+		values(Users_seq.nextval, #{u_id}, #{u_pw}, #{u_name}, #{u_mail}, #{u_hp}, #{u_address},
+		sysdate,0,0)
+	</insert>
+	<!-- 아이디 중복확인 -->
+	<select id="idcheck" parameterType="String" resultType="Integer">
+		select count(*) from users
+		where u_id=#{u_id}
+	</select>
+
+	<!-- 전화번호 중복확인 -->
+	<select id="hpcheck" parameterType="String" resultType="Integer">
+		select count(*) from users
+		where u_hp=#{u_hp}
+	</select>
+
+	<!-- 음식메뉴목록 -->
+	<select id="listmenu" resultType="dto.InformationDTO"
+		parameterType="String">
+		select c_type, c_title
+		from Config
+		where c_type = #{c_type}
+	</select>
+
+	<!-- 음식전체목록 -->
+	<select id="listAll" resultType="dto.InformationDTO"
+		parameterType="hashmap">
+		select rownum, b.*
+		from(select rownum as rm, a.*
+		from(select *
+		from Config c inner join Information i on c.c_no = i.i_gubun
+		where c.c_type = #{c_type})a)b
+		<![CDATA[where b.rm>=#{startrow} and b.rm <=#{endrow}]]>
+	</select>
+
+	<!-- 음식선택목록 -->
+	<select id="list" resultType="dto.InformationDTO"
+		parameterType="hashmap">
+		select rownum, b.*
+		from(select rownum as rm, a.*
+		from(select *
+		from Config c inner join Information i on c.c_no = i.i_gubun
+		where c.c_type = #{c_type} and i.i_gubun = #{i_gubun}
+		order by i_regdate
+		desc)a)b
+		<![CDATA[where b.rm>=#{startrow} and b.rm <=#{endrow}]]>
+	</select>
+
+	<!-- 음식제목 -->
+	<select id="title" resultType="dto.InformationDTO"
+		parameterType="hashmap">
+		select c_title
+		from Config
+		where c_type = #{c_type} and c_no = #{c_no}
+	</select>
+
+	<!-- 선택음식 장바구니 목록 -->
+	<select id="cart_list" parameterType="int"
+		resultType="dto.InformationDTO">
+		select * from information where i_no=#{i_no}
+	</select>
+
+	<!-- 회원 장바구니 목록 -->
+	<select id="login_cart_list" parameterType="int"
+		resultType="dto.Cart_ListDTO">
+		select * from cart_list
+		where u_no = #{u_no}
+	</select>
+
+	<!-- 회원 장바구니 -->
+	<insert id="login_cart_ins" parameterType="dto.Cart_ListDTO">
+		insert into
+		cart_list(cl_no,u_no,cl_img,cl_menu,cl_price,cl_quantity,cl_totalprice,cl_gubun,cl_regdate,i_no)
+		values(cart_list_seq.nextval,#{u_no},#{cl_img},#{cl_menu},#{cl_price},#{cl_quantity},#{cl_totalprice},#{cl_gubun},sysdate,#{i_no})
+	</insert>
+
+	<!-- 회원 장바구니 변경 -->
+	<update id="login_cart_update" parameterType="dto.Cart_ListDTO">
+		update cart_list
+		set cl_quantity = #{cl_quantity},
+		cl_totalprice = #{cl_totalprice},
+		cl_regdate = sysdate
+		where u_no=#{u_no} and cl_menu=#{cl_menu}
+	</update>
+
+	<!-- 회원 장바구니 삭제 -->
+	<delete id="login_cart_del" parameterType="hashmap">
+		delete from cart_list
+		where u_no=#{u_no} and cl_menu=#{cl_menu}
+	</delete>
+	
+	<!-- 장바구니 주문 -->
+	<update id="cart_order_update" parameterType="hashmap">
+		update cart_list
+		set cl_day=#{cl_day},
+			cl_when=#{cl_when},
+			cl_regdate = sysdate
+			where u_no=#{u_no} and cl_no=#{cl_no}
+	</update>
+
+	<!-- 나만의 도시락 -->
+	<insert id="my_cart_ins" parameterType="dto.Cart_ListDTO">
+		insert into
+		cart_list(cl_no,u_no,cl_menu,cl_totalprice,cl_day,cl_when,cl_gubun,cl_regdate,i_no)
+		values(cart_list_seq.nextval,#{u_no},#{cl_menu},#{cl_totalprice},#{cl_day},#{cl_when},1,sysdate,0)
+	</insert>
+
+	<!-- 상세페이지 -->
+	<select id="detail_list" parameterType="int"
+		resultType="dto.InformationDTO">
+		select * from information where i_no=#{i_no}
+	</select>
+	<!-- 상세페이지 이미지 -->
+	<select id="detail_img" parameterType="int"
+		resultType="dto.Information_ImageDTO">
+		select * from information_image where i_no=#{i_no} order by
+		ii_no
+	</select>
+	<!-- 후기리스트 -->
+	<select id="detail_comm" parameterType="int"
+		resultType="dto.Information_CommentDTO">
+		select * from users u, information_comment ic where
+		u.u_no=ic.u_no and i_no=#{i_no} and ic_state=0 order by ic_no desc
+	</select>
+	<!-- 후기작성 -->
+	<insert id="insert_comm"
+		parameterType="dto.Information_CommentDTO">
+		insert into information_comment(ic_no, i_no, u_no,
+		ic_star, ic_content, ic_regdate, ic_state)
+		values
+		(information_comment_seq.nextval, #{i_no}, #{u_no}, #{ic_star},
+		#{ic_content}, sysdate, 0)
+	</insert>
+
+
+	<!-- 나만의도시락 -->
+	<select id="lunchbox_list" parameterType="int"
+		resultType="dto.InformationDTO">
+		select * from information
+		<where>
+			<if test="value!=0">
+				i_gubun=#{value}
+			</if>
+			<if test="value==0">
+				i_gubun between 7 and 11
+			</if>
+		</where>
+	</select>
+
+	<!-- 유저 정보 불러오기 -->
+	<select id="user" resultType="dto.UsersDTO">
+		select * from Users order by u_no
+	</select>
+
+	<!-- 장바구니 불러오기 -->
+	<select id="cartlist" resultType="dto.Cart_ListDTO">
+		select * from cart_list order
+		by cl_no
+	</select>
+
+	<!-- 주문내역 저장 -->
+	<insert id="oderinsert" parameterType="dto.Oder_ListDTO">
+		insert into Oder(o_no, u_no, o_date, o_total, o_state, o_bank, o_name)
+		values(Oder_seq.nextval, #{u_no}, #{o_date}, #{o_total}, 0,
+		#{o_bank}, #{o_name})
+	</insert>
+
+	<!-- 주문내역 불러오기 -->
+	<select id="oderlist" parameterType="int" resultType="dto.Oder_ListDTO">
+		select * from Oder_menu
+		where u_no = #{u_no}
+		order by o_no
+	</select>
+
+	<!-- 주문상품 저장 -->
+	<insert id="odermenuinsert" parameterType="dto.Oder_menuDTO">
+		insert into Oder_menu(on_no, i_no, i_name, o_no, on_cnt, on_state, on_getdate,
+		on_time)
+		values(Oder_menu_seq.nextval, #{i_no}, #{i_name}, #{o_no}, #{on_cnt}, 0, #{on_getdate},
+		#{on_time})
+	</insert>
+
+	<!-- Oder삭제 -->
+	<select id="cartdelete">
+		DELETE FROM cart_list
+	</select>
+</mapper>   
+
+
+
+
+
+
+
+
+
+
+

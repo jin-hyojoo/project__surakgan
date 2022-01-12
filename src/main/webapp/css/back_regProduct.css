@@ -1,0 +1,57 @@
+.regProduct{
+	width: 350px;
+	background: #fff;
+	position: absolute;
+	top:-2000px;
+	left: 50%;
+	margin-left: -175px;
+	z-index: 25;
+}
+.regProduct fieldset{
+	border: 2px solid #d80027;
+}
+.regProduct #i_gubun{
+	width: 173px;
+	height: 22px;
+}
+
+.regProduct #subDiv{
+	width: 171px;
+	height: 150px;
+	overflow: auto;
+	border: 1px solid #c0c0c0;
+}
+.regProduct #subDiv input[type=checkbox]{
+	display: inline;
+}
+.regProduct #subDiv input[type=text]{
+	width: 134px;
+    border: 0px;
+}
+
+.regProduct #ctDiv{
+	width: 171px;
+	height: 150px;
+	overflow: auto;
+	border: 1px solid #c0c0c0;
+}
+.regProduct #ctDiv input[type=checkbox]{
+	display: inline;
+}
+.regProduct #ctDiv input[type=text]{
+	width: 134px;
+    border: 0px;
+}
+
+.regProduct #regBtn{
+	position: absolute;
+	top: 496px;
+	right: 20px;
+	
+}
+
+.regProduct #close{
+	position: absolute;
+	top: 0px;
+	right: -8px; 
+}

@@ -1,0 +1,89 @@
+.wrap_deed{
+	margin-top: 50px;
+}
+.join_state{
+	margin-top: 20px;
+}
+
+#wrap{
+	margin-top: 60px;
+	border-top: 1px solid #F9A406;
+	border-bottom: 1px solid #F9A406;
+	
+}
+
+.state_a{
+	width: 150px;
+	height: 30px;
+	margin-left: 220px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 24px;
+	color: white;
+    text-align: center;
+	background-color: #DD3522;
+	float: left;
+
+}
+
+.state_b{
+	width: 150px;
+	height: 30px;
+	margin-top: 20px;
+	margin-left: 10px;
+	font-size: 24px;
+	color:#fff;
+	text-align: center;
+	background-color: #F9A406;
+	float: left;
+	
+}
+.state_c{
+	width: 150px;
+	height: 30px;
+	margin-top: 20px;
+	margin-left: 10px;
+	font-size: 24px;
+	color:#fff;
+	text-align: center;
+	background-color: #F9A406;
+ 	float: left; 
+ 	
+}
+
+/*회원 약관*/
+#wrap_deed {
+	width:1100px;
+	margin:0 auto;
+	text-align:center; 
+	padding-bottom: 70px
+}
+	
+#wrap_deed .coverbox {
+	text-align:left;
+	color:#5D5D5D;
+	width:100%; 
+	height:200px;
+	overflow:auto;
+	border:1px solid #BDBDBD;
+	background-color:#fff; 
+	margin-top: 
+}
+
+.join_btn {
+	width:90px;
+	height:25px;
+	font-size:11px;
+	font-weight:bold;
+	cursor:pointer;
+}
+
+.btn{
+	margin-bottom: 20px;
+}
+.btn_red { 
+	background-color:#DD3522;
+	color:#fff;
+	font-weight: bold;
+	border:0;
+}

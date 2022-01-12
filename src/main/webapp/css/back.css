@@ -1,0 +1,79 @@
+ul, li{
+	list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#wrap{
+	width: 100%;
+	margin: auto;
+	position: relative;
+	background: #fff;
+}
+.top{
+	font-size: 17px;
+	float: right;
+}
+.board_search .board_btn{ width: 60px; height: 25px; line-height: 25px; }
+.board_search #searchWrap{ 
+	display: inline;
+	position: absolute;
+	top:60px;
+	right:0;
+}
+.board_search #searchWrap select, .board_search #searchWrap input{height: 25px; line-height: 25px;}
+.board_search #searchWrap .userList, .board_search #searchWrap .productList, .board_search #searchWrap .boardList{ display: none;}
+.board_list table{
+	table-layout: fixed;
+    width: 100%;
+    margin-top: 15px;
+    border-top: 2px solid #d80027;
+    border-bottom: 1px solid #c3c3c3;
+    border-collapse:collapse;
+    border-spacing:0;
+    text-align: center;
+}
+.board_list thead th{
+	border-bottom: 2px solid #d80027;
+	width: 100%;
+    height: 40px;
+    font-weight: bold;
+    vertical-align: middle;
+}
+.board_list tbody img{
+	width: 100px;
+	height: 100px;
+}
+.board_list #paging{
+	display:none;
+}
+
+
+
+/* 주문내역 */
+.orderWrap{
+	display: none;	
+}
+.orderWrap fieldset{
+	width: 500px;
+    height: 400px;
+    margin: auto;
+    position: absolute;
+    top: 325px;
+    left: 50%;
+    margin-left:-250px;	
+    background: #fff;
+}
+.orderWrap fieldset table{
+	width: 100%;
+}
+.orderWrap fieldset table a{
+	text-decoration: none;
+	color: black;
+}
+.orderWrap fieldset #close{
+	position: absolute;
+	top: 0px;
+	right: -8px; 
+}
+
+

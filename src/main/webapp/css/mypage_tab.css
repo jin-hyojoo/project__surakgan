@@ -1,0 +1,153 @@
+/*정보수정*/
+
+.myinfo {
+	margin-left: 20%;
+	margin-top: 20px;
+}
+
+.info_wrap{
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-bottom: -20px;
+	width: 900px;
+	border: 1px solid lightgray;
+}
+
+.info_wrap table {
+	table-layout:fixed; 
+	width:100%;
+	margin-top: -10px;
+}
+
+.info_wrap table tr.last th, .member_tbl1 table tr.last td {
+	border:none;
+}
+
+.info_wrap table tr th { 
+	width:181px; 
+	border-bottom:1px solid #e8e9e9; 
+	color:#272727; 
+	text-align:left; 
+	font-weight:normal; 
+	
+}
+
+.info_wrap table tr td { 
+	height:51px; /*padding:16px 0;*/ 
+	border-bottom:1px solid #e8e9e9; 
+	line-height:16px; 
+}
+
+
+.info_wrap table tr td strong { 
+	color:#272727; 
+}
+
+.info_wrap table tr td span.title {
+	margin-left:20px; 
+	color:#929292; 
+	font-size:12px; 
+	letter-spacing:-1px; 
+}
+
+.info_wrap table tr td .txt { 
+	height:20px; 
+	padding:3px; 
+	border-top:1px solid #919191; 
+	border-left:1px solid #919191; 
+	border-bottom:1px solid #d0d0d0; 
+	border-right:1px solid #d0d0d0; 
+}
+
+.info_wrap table tr td label { 
+	margin-left:3px; 
+	vertical-align:middle; 
+}
+
+.info_wrap table tr td .name {
+	width:207px;
+}
+
+#sample4_postcode{
+	margin-top: 10px;
+	width: 165px;
+	height: 20px;
+}
+
+#sample4_roadAddress{
+	margin-top: 10px;
+	width: 400px;
+}
+
+#sample4_jibunAddress{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 400px;
+}
+
+#btn_address{
+	background-color:#FAE0D4; 
+	border: 0;
+	width: 100px;
+	height: 30px;
+}
+
+#update_btn{
+	width: 70px;
+	height: 40px;
+	font-size: 13px;
+	margin-left: 20px;
+	background-color:#FFF2E6; 
+	border: 0;
+}
+
+.btn_red{
+	width: 70px;
+	height: 40px;
+	font-size: 13px;
+	margin-left: 10px;
+	background-color:#FFF2E6; 
+	border: 0;
+}
+
+#del_btn{
+	width: 70px;
+	height: 40px;
+	font-size: 13px;
+	margin-left: 670px;
+	background-color:#FAE0D4; 
+	border: 0;
+}
+
+
+
+
+/*나의 질문*/
+.qnainfo{
+	width: 80%;
+	margin-left: 10%;
+	border: 1px;
+}
+
+.qnainfo h2 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.qnawrap{
+	border: 1px solid lightgray;
+	margin-left: 15px;
+	width: 95%
+}
+
+.qnainfo table{
+	width: 100%
+}
+
+.qnainfo table th{
+	background-color: #FFF2E6;
+}
+
+.qnainfo table td{
+	text-align: center;
+}

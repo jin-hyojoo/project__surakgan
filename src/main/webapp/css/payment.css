@@ -1,0 +1,183 @@
+#container {
+	position: relative;
+	overflow: hidden;
+	height: 100%;;
+	border: 1px solid #000;
+	margin-right: 14%;
+	margin-left: 14%;
+}
+
+.content {
+	position: relative;
+	width: 980px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+#cart {
+	overflow: hidden;
+	background: #fff;
+	height: 100%;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+/*페이지의  hr,h2,h3,h4,label값 */
+#cart hr {
+	margin: 8px 0 8px 0;
+}
+
+#cart h2 {
+	margin: 20px 0 20px 0;
+}
+
+#cart h3 {
+	margin: 19px 0 19px 0;
+}
+
+#cart h4 {
+	margin: 21px 0 21px 0;
+}
+
+#cart label {
+	cursor: pointer;
+}
+
+/*01장바구니/02결제/03결제완료*/
+.title {
+	margin-left: 14%;
+}
+
+.title img {
+	width: 150px;
+	height: 75px;
+}
+
+.tb_order_style {
+	width: 100%;
+}
+/*(주문자정보+결제/수령일)div의 dt,dd,dl값 */
+.purchase_box {
+	overflow: hidden;
+	margin: 78px 0 10px;
+	position: relative;
+}
+
+.purchase_box dt {
+	float: left;
+	clear: both;
+	margin-bottom: 16px;
+}
+
+.purchase_box dd {
+	position: relative;
+	float: right;
+	text-align: right;
+	margin-bottom: 16px;
+	padding-right: 10px;
+}
+
+.purchase_box dl {
+	overflow: hidden;
+	font-size: 14px;
+	color: #000;
+	padding-bottom: 14px;
+}
+/*주문자 정보 div*/
+.purchase_guide {
+	float: left;
+	width: 48%;
+}
+
+.purchase_guide .box {
+	border-bottom: 1px solid #777;
+}
+
+.pay_type label {
+	font-size: 13px;
+}
+
+.pay_box {
+	margin: 20px 0 0 0;
+}
+
+.payment_name {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+/*결제/수령일 정보 div*/
+.purchase_price {
+	float: right;
+	width: 48%;
+}
+
+.purchase_price dl {
+	margin: 16px 0 16px 0;
+}
+
+.purchase_price .box {
+	background: #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+	padding: 30px 20px 30px 30px;
+}
+
+.purchase_price .total {
+	border-bottom: none;
+	margin: -3px 10px 6px 0;
+	border-top: 1px solid #777;
+	padding: 20px 0 0;
+}
+
+.purchase_price .total dt {
+	font-size: 18px;
+	color: #333;
+	font-family: NanumEB, sans-serif;
+	margin: 16px 0 0;
+	font-weight: bold;
+}
+
+.purchase_price .total dd {
+	color: #80bfff;
+	padding-right: 0;
+	margin-bottom: 0;
+}
+
+.purchase_price .total dd .number {
+	font-size: 43px;
+	font-weight: bold;
+}
+
+.purchase_price .total dd .won {
+	font-size: 20px;
+	font-family: NanumBold, sans-serif;
+	display: inline-block;
+	position: relative;
+	top: -3px;
+}
+/*결제하기 버튼*/
+.btn-area.cart {
+	margin: 0 0 100px;
+	overflow: hidden;
+	text-align: center;
+}
+
+.btn-area.cart a {
+	display: inline-block;
+	width: 300px;
+	height: 66px;
+	margin: 0 3px;
+	font-size: 20px;
+	font-family: NanumBold, sans-serif;
+	text-align: center;
+	line-height: 66px;
+}
+
+.btn_mint {
+	background: #80bfff;
+	color: #fff;
+}
+/*약관동의 체크박스*/
+.check_box {
+	font-size: 13px;
+	margin: 20px 0 20px 0;
+}

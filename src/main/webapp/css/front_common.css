@@ -1,0 +1,557 @@
+@charset "UTF-8";
+
+
+/* 기본 레이아웃 */
+* {
+	margin: 0;
+	padding: 0;	
+}
+
+img{border:none;}
+fieldset{border:none;}
+
+ #login{
+    width: 20%;
+    height: 40px;
+    margin-left: 1075px;
+    margin-top: 15px;
+ }
+ 
+ #header {
+	width: 100%;
+	height: 69px;
+    position: relative;
+	z-index: 10;
+	border-bottom: 2px solid #DD3522;
+}
+
+/* 폰트 적용 및 링크 텍스트 적용 */
+
+@font-face{
+	font-family: 'NanumGothic';
+	font-style: normal;
+	font-weight: normal;
+}
+
+body {
+	font-family: 'NanumGothic';
+	word-spacing: -0.3px;
+}
+
+a {
+	text-decoration: none;
+	color: #2d2d2d;
+}
+
+a:hover, a:focus {
+	color: #F9A406;
+}
+
+dl, ul, ol, menu, li {
+	list-style: none;
+}
+
+/* ----------------------------- */
+
+/*탑*/
+.top{
+	width: 100%;
+	height: 24px;
+	margin-top: 10px;
+}
+
+.login{
+	margin-left: 80%;
+	font-size: 15px;
+}
+
+ 
+.insta img{
+	margin-left: 10px;
+	margin-top: 5px;
+	width: 20px;
+}
+
+.face img{
+	margin-left: 5px;
+	width: 20px;
+}
+/*헤더 영역*/
+#header .front_header_wrap {
+	font-family: 'NanumGothic';
+	width: 100%;
+	min-height: 22px;
+	margin: 0 auto;
+	position: relative;
+	top: 32px;
+	zoom: 1;
+}
+
+/* 네비 */
+.king_nav {
+	display: block;
+	float: left;
+	position: relative;
+	top: -13px;
+	margin: 4px 0 0 180px; 
+	z-index: 25;
+}
+
+.king_nav li {
+	float: left;
+	list-style: none;
+}
+.king_nav li.king_logo {
+	margin-top: -40px;
+}
+
+.king_nav li.king_menu {
+	margin-left: 70px;
+	margin-top: -7px;
+	font-size: 22px;
+}
+
+.king_nav li.king_store {
+	margin-left: 70px;
+	margin-top: -7px;
+	font-size: 22px;
+}
+
+.king_nav li.king_event {
+	margin-left: 70px;
+	margin-top: -7px;
+	font-size: 22px;
+}
+
+.king_nav li.king_qna {
+	margin-left: 70px;
+	margin-top: -7px;
+	font-size: 22px;
+}
+
+.king_nav li.sns_insta {
+	margin-left: 270px;
+	margin-top: -14px;
+
+}
+
+.king_nav li.sns_face {
+	margin-left: -8px;
+	margin-top: -14px;
+	
+}
+
+
+/* 네비 - 펼침 */
+#nav_total {
+   width: 100%;
+   height: 218px;
+   background: #fff;
+   position: absolute;
+   top: 39px;
+   left: 0;
+   display: none;
+}
+
+#nav_total a {text-decoration: none;color: #2d2d2d;}
+#nav_total a:hover, #nav_total a:focus {color: #ff980d;}
+
+
+#nav_total_in {
+	width: 100%;
+	height: 100%;
+	top: 4px;
+ 	background: url("../images/header_gnb_bg.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100%;
+	margin: 0 auto;
+}
+
+#nav_total ul {
+	position: relative;
+	float: left;
+	text-align: center;
+	list-style: none;
+	font-size: 14px;
+	color: #858585;
+	line-height: 29px;
+	top: 22px;
+}
+
+#nav_total ul.king_menu_list {
+	margin-left: 365px;
+}
+
+#nav_total ul.king_store_list {
+	margin-left: 105px;
+}
+
+#nav_total ul.king_event_list {
+	margin-left: 110px;
+}
+
+#nav_total ul.king_event_qna {
+	margin-left: 100px;
+}
+
+/*공지사항*/
+
+.king_notice_wrap {
+	border-bottom: 1px solid rgba(180, 180, 180, 0.4);
+	position: relative;
+	/* margin-top: -50px; */
+	padding-top: 20px;
+	height: 24px;
+	padding-bottom: 10px;
+}
+
+.king_notice {
+	position: relative;
+	width: 80%;
+	height: 34px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.category {
+	position: absolute;
+}
+
+.category span {
+	font-weight: bold;
+	font-size: 16px;
+	color: #ff980d;
+}
+
+.notice_bx {
+	position: absolute;
+	width: 1070px;
+	margin-left: 80px;
+	margin-top: -22px;
+	line-height: 50px;
+}
+
+.notice_bx ul {
+	margin-top: 6px;
+}
+
+.notice_bx li {
+	margin-left: 10px;
+}
+
+
+ .king_notice .more_btn {
+	position: absolute;
+	font-size: 14px;
+	font-weight: bold;
+	color: rgba(45, 45, 45, 0.7);
+	right: 0px;
+    width: 52px;
+}
+
+ .king_notice .more_btn img{
+	bottom: 4px;
+    position: absolute;
+    right: 0;
+}
+
+.king_notice .more_btn:hover {
+	text-decoration: underline;
+} 
+
+/*최고의 도시락*/
+
+#best_list_wrap {
+	background-color: white;
+	height: 450px;
+	width: 100%;
+	bottom: 0;
+	margin-top: 20px;	
+	overflow:hidden;/*추가*/
+}
+
+#best_list_wrap .title_big {
+	position: relative;
+	width: 100%;
+	height: 30px;
+	overflow: hidden;
+    text-align: center;
+}
+
+#best_list_wrap .title_small {
+	position: relative;
+	width: 100%;
+	height: 20px;
+	overflow: hidden;
+	margin-top: 5px;
+	text-align: center;
+}
+
+.best_img {
+	display: block;
+	position: relative;
+	width: 80%;
+	height: 200px;
+	text-align: center;
+	margin-left:140px;
+	margin-top: 10px;
+}	
+
+.slide_li{
+	float: left;
+	margin-left: 80px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.food_img img{
+	width: 200px;
+}
+
+.foods_list_info{
+	width: 200px;
+	margin-top: 5px;
+}
+
+.best_more:focus {
+    color: #000;
+    border-color: #b4b4b4;
+}
+
+.best_more{
+    display: block;
+    margin-top: 130px;
+    margin-left: 140px;
+    padding: 17px 0 15px;
+    width: 80%;
+    text-align: center;
+    font-size: 16px;
+    color: #444;
+    border: 1px solid #d7d7d7;
+}
+
+ a {
+    text-decoration: none;
+    color: #333;
+} 
+/*새로운 도시락 슬라이더*/
+
+#box_list_wrap {
+	background-color: white;
+	height: 450px;
+	width: 100%;
+	bottom: 0;
+	margin-top: 20px;	
+	overflow:hidden;/*추가*/
+}
+
+#box_list_wrap .title_big {
+	position: relative;
+	width: 100%;
+	height: 30px;
+	overflow: hidden;
+	text-align: center;
+}
+
+#box_list_wrap .title_small {
+	position: relative;
+	width: 100%;
+	height: 20px;
+	overflow: hidden;
+	margin-top: 5px;
+	text-align: center;
+}
+
+.side_img {
+	display: block;
+	position: relative;
+	width: 80%;
+	height: 200px;
+	text-align: center;
+	margin-left:140px;
+	margin-top: 10px;
+}	
+
+.slide_li{
+	float: left;
+	margin-left: 80px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.food_img img{
+	width: 200px;
+}
+
+.foods_list_info{
+	width: 200px;
+	margin-top: 5px;
+}
+
+.best_more:focus {
+    color: #000;
+    border-color: #b4b4b4;
+}
+
+.box_more{
+    display: block;
+    margin-top: 100px;
+    margin-left: 140px;
+    padding: 17px 0 15px;
+    width: 80%;
+    text-align: center;
+    font-size: 16px;
+    color: #444;
+    border: 1px solid #d7d7d7;
+}
+
+ a {
+    text-decoration: none;
+    color: #333;
+} 
+
+/*새로운 사이드 메뉴 슬라이더*/
+
+#side_list_wrap {
+	background-color: white;
+	height: 450px;
+	width: 100%;
+	bottom: 0;
+	margin-top: 20px;	
+	overflow:hidden;/*추가*/
+}
+
+#side_list_wrap .title_big {
+	position: relative;
+	width: 100%;
+	height: 30px;
+	overflow: hidden;
+    text-align: center;
+}
+
+#side_list_wrap .title_small {
+	position: relative;
+	width: 100%;
+	height: 20px;
+	overflow: hidden;
+	margin-top: 5px;
+	text-align: center;
+}
+
+.box_img {
+	display: block;
+	position: relative;
+	width: 80%;
+	height: 200px;
+	text-align: center;
+	margin-left:140px;
+	margin-top: 10px;
+}	
+
+.slide_li{
+	float: left;
+	margin-left: 80px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.food_img img{
+	width: 200px;
+}
+
+.foods_list_info{
+	width: 200px;
+	margin-top: 5px;
+}
+
+.best_more:focus {
+    color: #000;
+    border-color: #b4b4b4;
+}
+
+.box_more{
+    display: block;
+    margin-top: 100px;
+    margin-left: 140px;
+    padding: 17px 0 15px;
+    width: 80%;
+    text-align: center;
+    font-size: 16px;
+    color: #444;
+    border: 1px solid #d7d7d7;
+}
+
+ a {
+    text-decoration: none;
+    color: #333;
+} 
+
+
+
+
+/*메인 고기,채소*/
+.gogi img{
+	width: 100%;
+	margin-top: 25px;
+	
+}
+
+.veg img{
+	width: 100%;
+}
+/* 풋터 */
+.king_footer{
+	margin-top: 20px;
+    border-top: 2px solid #DD3522; 
+}
+
+.king_footer_wrap {
+	/* position: absolute; */
+	width: 1100px;
+	margin-top: 50px;
+	width: 1100px;
+   
+}
+
+.footer_logo {
+	float: left;
+	position: relative;
+	margin-top: -30px;
+	margin-left: 300px;
+	margin-bottom: 20px;
+}
+
+.service_area {
+	font-size: 12px;
+}
+
+.service_area address {
+	font-style: normal;
+	line-height: 24px;
+}
+
+.service_area a:hover, a:focus {
+	text-decoration:underline;
+}
+
+.service_area p {
+	margin-top: 15px;
+}
+
+.site_link {
+	position: absolute;
+	float: right;
+	top: 0px;
+	right: 0;
+	height: 26px;
+	font-size: 12px;
+	padding-top: 8px;
+}
+
+.site_link:hover {
+	border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+
+

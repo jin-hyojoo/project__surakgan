@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+	<!-- 게시글 리스트 갯수 카운트 -->
+	<select id="count" parameterType="dto.SearchDTO" resultType="java.lang.Integer">
+		 select count(*) from QnA 
+		<where>
+			<choose>
+				<when test="head==null"></when>
+				<when test="head=='전체'"></when>
+				<when test="head!=''">
+					q_head like '%' || #{head} || '%'
+				</when>
+			</choose>
+		</where>
+		
+		<where>	
+			<choose>
+				<when test="keyword == null"></when>
+				<when test="keyword !=''">
+					<choose>
+						<!-- 전체검색이면  -->
+						<when test="option == 'all'">
+							q_writer like '%'||#{keyword}||'%'
+							OR q_content like '%'||#{keyword}||'%'
+							OR q_title like '%'||#{keyword}||'%'
+						</when>
+						<otherwise>
+							${option} like '%'||#{keyword}||'%'
+						</otherwise>
+					</choose>
+				</when>
+			</choose>
+		</where>
+	</select>
+	
+
+	<!--리스트 셀렉트 -->
+	<select id="list" parameterType="java.util.Map" resultType="dto.QnaDTO">
+		select b.*
+		from (select rownum as rm, a.*
+		from (select *
+		from (select *
+		from QnA
+		<where>
+			<choose>
+				<when test="sdto.head==null"></when>
+				<when test="sdto.head=='전체'"></when>
+				<when test="sdto.head !=''">
+					q_head = #{sdto.head}
+				</when>
+			</choose>
+		</where>
+		order by q_ref desc, q_step asc)
+		<where>
+			<choose>
+				<when test="sdto.keyword == null"></when>
+				<when test="sdto.keyword !=''">
+					<choose>
+						<!-- 검색옵션이 전체 검색일 경우 -->
+						<when test="sdto.option == 'all'">
+							q_writer like '%'||#{sdto.keyword}||'%'
+							OR q_content like '%'||#{sdto.keyword}||'%'
+							OR q_title like '%'||#{sdto.keyword}||'%'
+						</when>
+						<!-- 전체 검색이 아닐 경우 -->
+						<otherwise>
+							${sdto.option} like '%'||#{sdto.keyword}||'%'
+						</otherwise>
+					</choose>
+				</when>
+			</choose>
+		</where>)
+		a)b
+		<![CDATA[where b.rm>=#{pdto.startRow} and b.rm<=#{pdto.endRow}]]>
+	</select>
+
+	<!-- 조회수 증가 -->
+	<update id="readCount" parameterType="int">
+		update QnA
+		set
+		q_readcount=q_readcount+1
+		where q_no=#{q_no} <!-- 해당되는 num의 
+			readcount값을 증가시켜주고 -->
+	</update>
+
+	<select id="content" parameterType="int" resultType="dto.QnaDTO">
+		select q.*, u.u_name 
+		from QnA q, Users u
+		where q.u_no = u.u_no and q_no=#{q_no} <!-- num에 해당되는 상세페이지에 접속 -->
+	</select>
+
+	<update id="reStepCount" parameterType="dto.QnaDTO">
+	 <![CDATA[
+	    update QnA set q_step=q_step+1
+	    where q_ref=#{q_ref} and q_step>#{q_step}
+	 ]]>
+	</update>
+
+	<insert id="save" parameterType="dto.QnaDTO">
+		insert into QnA
+		values(QnA_seq.nextval,1,#{q_head},#{q_title},#{q_content}, sysdate,
+		0,
+		<choose>
+			<when test="q_ref==0">
+				QnA_seq.nextval
+			</when>
+			<otherwise>
+				#{q_ref}
+			</otherwise>
+		</choose>
+		,#{q_step},#{q_level},0)
+	</insert>
+
+
+	<update id="update" parameterType="dto.QnaDTO">
+		update QnA set q_head=#{q_head, jdbcType=VARCHAR},
+		q_title=#{q_title, jdbcType=VARCHAR}, q_content=#{q_content, jdbcType=VARCHAR}
+		where q_no=#{q_no, jdbcType=INTEGER}
+
+		<!-- update QnA set q_head=#{q_head}, q_title=#{q_title}, q_content=#{q_content} 
+			where q_no=#{q_no} -->
+	</update>
+
+
+	<delete id="delete" parameterType="int">
+		delete from QnA where
+		q_no=#{q_no}
+	</delete>
+</mapper>    
